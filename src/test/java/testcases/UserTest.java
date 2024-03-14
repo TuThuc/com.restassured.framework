@@ -27,7 +27,7 @@ userPayload.setPhone(faker.phoneNumber().cellPhone());
     }
     @Test(priority = 1)
     public void testPostUser(){
-        Response rs = ApiKeyword.createUser(userPayload);
+        Response rs = ApiKeyword.get(userPayload);
         rs.then().log().all();
         Assert.assertEquals(rs.getStatusCode(),200);
     }

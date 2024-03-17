@@ -5,7 +5,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import ultilities.LogUtils;
-
 import java.io.File;
 import java.util.Map;
 

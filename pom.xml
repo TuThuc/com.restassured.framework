@@ -18,6 +18,7 @@
         <xmlpath.version>5.3.2</xmlpath.version>
         <hamcrest.version>5.3.2</hamcrest.version>
         <allure.version>2.24.0</allure.version>
+        <aspectj.version>1.9.21.1</aspectj.version>
     </properties>
     <dependencies>
     <dependency>
@@ -67,6 +68,11 @@
             <version>${allure.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
@@ -96,6 +102,12 @@
             <artifactId>owner</artifactId>
             <version>1.0.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
     </dependencies>
     <build>
@@ -115,8 +127,12 @@
             <version>3.1.2</version>
             <configuration>
                 <suiteXmlFiles>
-                    <suiteXmlFile>testng.xml</suiteXmlFile>
+                    <suiteXmlFile>./src/test/resources/runTestProject.xml</suiteXmlFile>
                 </suiteXmlFiles>
+                <!-- Argument -->
+                <argLine>
+                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                </argLine>
             </configuration>
         </plugin>
     </plugins>

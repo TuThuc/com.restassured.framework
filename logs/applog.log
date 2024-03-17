@@ -1,0 +1,66 @@
+[INFO] 15-03-2024 23:56:41 [main] LogUtils - POST not authorization: /login
+[INFO] 15-03-2024 23:56:41 [main] LogUtils - Body: {"usermame":"UserName","password":"Demo@123"}
+[INFO] 15-03-2024 23:56:47 [main] LogUtils - RESPONSE: 
+{
+    "message": "The username field is required.",
+    "errors": {
+        "username": [
+            "The username field is required."
+        ]
+    }
+}
+[INFO] 16-03-2024 00:00:05 [main] LogUtils - POST not authorization: /login
+[INFO] 16-03-2024 00:00:05 [main] LogUtils - Body: {"usermame":"UserName1","password":"Demo@123"}
+[INFO] 16-03-2024 00:00:11 [main] LogUtils - RESPONSE: 
+{
+    "message": "The username field is required.",
+    "errors": {
+        "username": [
+            "The username field is required."
+        ]
+    }
+}
+[INFO] 16-03-2024 00:02:20 [main] LogUtils - POST not authorization: /login
+[INFO] 16-03-2024 00:02:20 [main] LogUtils - Body: {"usermame":"anhtester","password":"Demo@123"}
+[INFO] 16-03-2024 00:02:25 [main] LogUtils - RESPONSE: 
+{
+    "message": "The username field is required.",
+    "errors": {
+        "username": [
+            "The username field is required."
+        ]
+    }
+}
+[INFO] 16-03-2024 00:09:51 [main] LogUtils - POST not authorization: /login
+[INFO] 16-03-2024 00:09:51 [main] LogUtils - Body: {"usermame":"anhtester","password":"Demo@123"}
+[INFO] 16-03-2024 00:09:57 [main] LogUtils - RESPONSE: 
+{
+    "message": "The username field is required.",
+    "errors": {
+        "username": [
+            "The username field is required."
+        ]
+    }
+}
+[INFO] 16-03-2024 00:10:39 [main] LogUtils - POST not authorization: /login
+[INFO] 16-03-2024 00:10:39 [main] LogUtils - Body: {"usermame":"anhtester","password":"Demo@123"}
+[INFO] 16-03-2024 00:10:45 [main] LogUtils - RESPONSE: 
+{
+    "message": "The username field is required.",
+    "errors": {
+        "username": [
+            "The username field is required."
+        ]
+    }
+}
+[INFO] 17-03-2024 10:59:21 [main] LogUtils - POST not authorization: /login
+[INFO] 17-03-2024 10:59:21 [main] LogUtils - Body: {"usermame":"anhtester","password":"Demo@123"}
+[INFO] 17-03-2024 10:59:38 [main] LogUtils - RESPONSE: 
+{
+    "message": "The username field is required.",
+    "errors": {
+        "username": [
+            "The username field is required."
+        ]
+    }
+}

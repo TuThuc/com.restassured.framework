@@ -6,7 +6,7 @@ import pojo.LoginPOJO;
 public class LoginPOJO_Builder {
     public static LoginPOJO getDataLogin(){
         return LoginPOJO.builder()
-                .usermame(ConfigsGlobal.USER_NAME)
+                .username(ConfigsGlobal.USER_NAME)
                 .password(ConfigsGlobal.PASSWORD)
                 .build();
     }

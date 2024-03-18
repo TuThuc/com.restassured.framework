@@ -16,8 +16,7 @@ public class BaseTest {
         LoginPOJO loginPOJO = LoginPOJO_Builder.getDataLogin();
 
         Gson gson = new Gson();
-        Response response = ApiKeyword.postNotq
-        Auth(EndPoints.EP_LOGIN, gson.toJson(loginPOJO));
+        Response response = ApiKeyword.postNotAuth(EndPoints.EP_LOGIN, gson.toJson(loginPOJO));
         response.then().statusCode(200);
 
         TokenGlobal.TOKEN = response.getBody().path("token");

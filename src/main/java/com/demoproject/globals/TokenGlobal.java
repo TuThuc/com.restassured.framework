@@ -1,4 +1,4 @@
-package commons.globals;
+package com.demoproject.globals;
 
 public class TokenGlobal {
     public static String TOKEN;

@@ -1,12 +1,15 @@
-package commons;
+package com.demoproject.keywords;
 
 
+import com.demoproject.globals.StatusCode;
 import io.qameta.allure.Step;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
-import ultilities.LogUtils;
+import com.demoproject.ultilities.LogUtils;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -162,6 +165,21 @@ public class ApiKeyword {
         return key_value;
     }
     @Step
+    public static List<String> getResponseKeyValues(Response response, String responseKey) {
+        List<String> keyValues = new ArrayList<>();
+        try {
+            JsonPath jsonPath = response.jsonPath();
+            List<Object> values = jsonPath.getList(responseKey);
+            for (Object value : values) {
+                keyValues.add(value.toString());
+            }
+            LogUtils.info("Get body by key (" + responseKey + "): " + keyValues);
+        } catch (Exception e) {
+            LogUtils.error("Failed to get body by key (" + responseKey + "): " + e.getMessage());
+        }
+        return keyValues;
+    }
+    @Step
     public static String getResponseKeyValue(String responseBody, String responseKey) {
         JsonPath jsonPath = new JsonPath(responseBody);
         String key_value = jsonPath.get(responseKey).toString();
@@ -200,8 +218,8 @@ public class ApiKeyword {
         return cookie_value;
     }
     @Step
-    public static void verifyStatusCode(Response response, int expectedStatusCode) {
-        LogUtils.info("Verify Status code: " + response.getStatusCode() + " == " + expectedStatusCode);
-        Assert.assertEquals(response.getStatusCode(), expectedStatusCode, "FAIL. The status code not match.");
+    public static void verifyStatusCode(Response response, StatusCode statusCode) {
+        LogUtils.info("Verify Status code: " + response.getStatusCode() + " == " + statusCode.code);
+        Assert.assertEquals(response.getStatusCode(), statusCode.code, statusCode.msg);
     }
 }

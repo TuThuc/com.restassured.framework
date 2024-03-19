@@ -1,10 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="SuiteRunTest" verbose="1">
-    <listeners></listeners>
     <test name="DemoTest">
         <classes>
-            <class name= "testcases.users.GetUsers"/>
+            <class name= "com.demoproject.tests.users.GetUsers"/>
         </classes>
     </test>
 </suite>

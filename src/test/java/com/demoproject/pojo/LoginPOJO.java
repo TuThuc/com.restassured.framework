@@ -1,4 +1,4 @@
-package pojo;
+package com.demoproject.pojo;
 
 import lombok.Builder;
 @Builder

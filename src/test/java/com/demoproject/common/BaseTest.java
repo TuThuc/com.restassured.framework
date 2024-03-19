@@ -1,14 +1,14 @@
-package testcases.common;
+package com.demoproject.common;
 
+import com.demoproject.globals.StatusCode;
+import com.demoproject.pojo.LoginPOJO;
+import com.demoproject.pojo.data.LoginPOJO_Builder;
 import com.google.gson.Gson;
-import commons.ApiKeyword;
-import commons.globals.ConfigsGlobal;
-import commons.globals.EndPoints;
-import commons.globals.TokenGlobal;
+import com.demoproject.keywords.ApiKeyword;
+import com.demoproject.globals.EndPoints;
+import com.demoproject.globals.TokenGlobal;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeTest;
-import pojo.LoginPOJO;
-import pojo.data.LoginPOJO_Builder;
 
 public class BaseTest {
     @BeforeTest
@@ -17,7 +17,7 @@ public class BaseTest {
 
         Gson gson = new Gson();
         Response response = ApiKeyword.postNotAuth(EndPoints.EP_LOGIN, gson.toJson(loginPOJO));
-        response.then().statusCode(200);
+      ApiKeyword.verifyStatusCode(response, StatusCode.CODE_200);
 
         TokenGlobal.TOKEN = response.getBody().path("token");
         System.out.println("Token Global: " + TokenGlobal.TOKEN);

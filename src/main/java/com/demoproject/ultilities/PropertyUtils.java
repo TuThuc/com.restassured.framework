@@ -1,8 +1,8 @@
-package helpers;
+package com.demoproject.ultilities;
 
 import org.aeonbits.owner.Config;
 @Config.Sources({"file:./src/main/resources/environment/staging.properties"})
-public interface ConfigProperties extends Config {
+public interface PropertyUtils extends Config {
     @Key("BASE_URI")
     String getBaseURI();
 

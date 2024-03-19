@@ -1,7 +1,7 @@
-package pojo.data;
+package com.demoproject.pojo.data;
 
-import commons.globals.ConfigsGlobal;
-import pojo.LoginPOJO;
+import com.demoproject.globals.ConfigsGlobal;
+import com.demoproject.pojo.LoginPOJO;
 
 public class LoginPOJO_Builder {
     public static LoginPOJO getDataLogin(){

@@ -1,4 +1,4 @@
-package commons.globals;
+package com.demoproject.globals;
 
 public class EndPoints {
     public static final String EP_REGISTER = "/register";

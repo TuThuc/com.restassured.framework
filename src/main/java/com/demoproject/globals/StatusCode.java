@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum StatusCode {
-    CODE_200(200, "Sudfsfsccess");
+    CODE_200(200, "Success");
 
    //   CODE_201(201,"");
 

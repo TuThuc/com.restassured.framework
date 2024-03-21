@@ -4,6 +4,9 @@ import com.demoproject.common.BaseTest;
 import com.demoproject.globals.StatusCode;
 import com.demoproject.keywords.ApiKeyword;
 import com.demoproject.globals.EndPoints;
+import com.demoproject.pojo.RegisterUserPOJO;
+import com.demoproject.pojo.data.RegisterUserPOJO_Builder;
+import com.google.gson.Gson;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -24,7 +27,9 @@ public class GetUsers extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description : Verify create new user")
     public void TC02_VerifyCreateNewUser(){
-        Response response = ApiKeyword.get(EndPoints.EP_GET_ALL_USER);
+        RegisterUserPOJO registerUserPOJO = RegisterUserPOJO_Builder.getUserData();
+        Gson gson = new Gson();
+        Response response = ApiKeyword.post(EndPoints.EP_CREATE_USER,gson.toJson(registerUserPOJO));
         ApiKeyword.verifyStatusCode(response, StatusCode.CODE_200);
     }
 

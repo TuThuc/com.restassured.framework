@@ -1,0 +1,9 @@
+{
+  "username": "theUserUpdate",
+  "firstName": "Gerrard",
+  "lastName": "Steven",
+  "email": "stevengerrard@email.com",
+  "password": "123456",
+  "phone": "0912345679",
+  "userStatus": 1
+}

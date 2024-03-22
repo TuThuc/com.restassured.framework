@@ -32,11 +32,11 @@ public class ApiKeyword {
         return response;
     }
     @Step
-    public static Response get(String path, Map<String, String> headers) {
+    public static Response get(String path, Map<String, String> params) {
         LogUtils.info("GET: " + path);
-        LogUtils.info("HEADERS: " + headers);
+        LogUtils.info("HEADERS: " + params);
         Response response =
-                given(SpecBuilder.getRequestSpecBuilder().headers(headers)).
+                given(SpecBuilder.getRequestSpecBuilder().params(params)).
                         when().
                         get(path).
                         then().
@@ -80,7 +80,7 @@ public class ApiKeyword {
         return response;
     }
     @Step
-    public static Response post(String path, Object payLoad) {
+    public static Response postWithPayload(String path, Object payLoad) {
         LogUtils.info("POST: " + path);
         LogUtils.info("Body: " + payLoad);
         Response response =
@@ -112,7 +112,7 @@ public class ApiKeyword {
         return response;
     }
     @Step
-    public static Response post(String path, String filePathBody) {
+    public static Response postWithFile(String path, String filePathBody) {
         LogUtils.info("POST: " + path);
         LogUtils.info("Body: " + filePathBody);
         Response response =
@@ -137,6 +137,37 @@ public class ApiKeyword {
                         when().
                         put(path).
                         then().
+                        extract().response();
+
+        LogUtils.info("RESPONSE: \n" + response.prettyPrint());
+        return response;
+    }
+    public static Response putWithFile(String path, String filePathBody, int userId) {
+        LogUtils.info("PUT: " + path);
+        LogUtils.info("Body: " + filePathBody);
+        Response response = given(SpecBuilder.getRequestSpecBuilder()).
+                        pathParam("userid", userId). // Thêm userId vào URL
+                        body(new File(filePathBody)).
+                        when().
+                        put(path).
+                        then().
+                        spec(SpecBuilder.getResponseSpecBuilder()).
+                        extract().response();
+
+        LogUtils.info("RESPONSE: \n" + response.prettyPrint());
+        return response;
+    }
+
+    public static Response put(String path, String filePathBody) {
+        LogUtils.info("POST: " + path);
+        LogUtils.info("Body: " + filePathBody);
+        Response response =
+                given(SpecBuilder.getRequestSpecBuilder()).
+                        body(new File(filePathBody)).
+                        when().
+                        put(path).
+                        then().
+                        spec(SpecBuilder.getResponseSpecBuilder()).
                         extract().response();
 
         LogUtils.info("RESPONSE: \n" + response.prettyPrint());

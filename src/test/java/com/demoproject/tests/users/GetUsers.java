@@ -1,6 +1,7 @@
 package com.demoproject.tests.users;
 
 import com.demoproject.common.BaseTest;
+
 import com.demoproject.globals.StatusCode;
 import com.demoproject.keywords.ApiKeyword;
 import com.demoproject.globals.EndPoints;
@@ -20,7 +21,7 @@ import java.util.Map;
 @Feature("Verify CRUID Operations on User module")
 public class GetUsers extends BaseTest {
     private int userID;
-    private String userName;
+    private String userName,userNameEdited;
     @Test(description = "To get the details of all user", priority = 0)
     @Story("GET Request with All User")
     @Severity(SeverityLevel.NORMAL)
@@ -40,9 +41,7 @@ public class GetUsers extends BaseTest {
         ApiKeyword.verifyStatusCode(response, StatusCode.CODE_200);
         userID = Integer.parseInt(ApiKeyword.getResponseKeyValue(response,"response.id"));
         userName = ApiKeyword.getResponseKeyValue(response,"response.username");
-
     }
-
     @Story("Get Request with UserName")
     @Severity(SeverityLevel.NORMAL)
     @Description("Test Description : Verify get user by username")
@@ -56,13 +55,26 @@ public class GetUsers extends BaseTest {
 
         Assert.assertEquals(ApiKeyword.getResponseKeyValue(response, "response.username"), userName);
     }
-    @Story("PUT Request with UserName")
+    @Story("PUT Request with UserID")
     @Severity(SeverityLevel.NORMAL)
-    @Description("Test Description : Verify update user by username")
-    @Test(description = "Update user by username",priority = 3)
+    @Description("Test Description : Verify update user by userID")
+    @Test(description = "Update user by userID",priority = 3)
     public void TC04_VerifyUpdateUserByUserID() {
-        String dataFile = "src/test/resources/testdata/EditUser.json";
-        Response response = ApiKeyword.putWithFile(EndPoints.EP_UPDATE_USER,dataFile, userID);
+        CreateUserPOJO createUserPOJO = CreateUserPOJO_Builder.getUserData();
+        Response response = ApiKeyword.put(EndPoints.EP_CREATE_USER+"/"+ userID,createUserPOJO);
+        ApiKeyword.verifyStatusCode(response, StatusCode.CODE_200);
+        verifyEquals(ApiKeyword.getResponseKeyValue(response, "response.username"),createUserPOJO.getUsername());
+        //Assert.assertEquals(ApiKeyword.getResponseKeyValue(response, "response.username"), createUserPOJO.getUsername());
+        userNameEdited = ApiKeyword.getResponseKeyValue(response,"response.username");
+    }
+    @Story("DELETE Request with username")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Test Description : Verify delete user by username")
+    @Test(description = "Delete user by userID",priority = 4)
+    public void TC05_VerifyDeleteUserByUsername() {
+        Map<String, String> params = new HashMap<>();
+        params.put("username", userNameEdited);
+        Response response = ApiKeyword.delete(EndPoints.DELETE_URL,params);
         ApiKeyword.verifyStatusCode(response, StatusCode.CODE_200);
     }
 }

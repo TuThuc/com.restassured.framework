@@ -142,22 +142,6 @@ public class ApiKeyword {
         LogUtils.info("RESPONSE: \n" + response.prettyPrint());
         return response;
     }
-    public static Response putWithFile(String path, String filePathBody, int userId) {
-        LogUtils.info("PUT: " + path);
-        LogUtils.info("Body: " + filePathBody);
-        Response response = given(SpecBuilder.getRequestSpecBuilder()).
-                        pathParam("userid", userId). // Thêm userId vào URL
-                        body(new File(filePathBody)).
-                        when().
-                        put(path).
-                        then().
-                        spec(SpecBuilder.getResponseSpecBuilder()).
-                        extract().response();
-
-        LogUtils.info("RESPONSE: \n" + response.prettyPrint());
-        return response;
-    }
-
     public static Response put(String path, String filePathBody) {
         LogUtils.info("POST: " + path);
         LogUtils.info("Body: " + filePathBody);
@@ -167,7 +151,6 @@ public class ApiKeyword {
                         when().
                         put(path).
                         then().
-                        spec(SpecBuilder.getResponseSpecBuilder()).
                         extract().response();
 
         LogUtils.info("RESPONSE: \n" + response.prettyPrint());
@@ -185,6 +168,19 @@ public class ApiKeyword {
                         then().
                         extract().response();
 
+        LogUtils.info("RESPONSE: \n" + response.prettyPrint());
+        return response;
+    }
+    public static Response delete(String path, Map<String, String> params) {
+        LogUtils.info("Path: " + path);
+        LogUtils.info("Params: " + params);
+        Response response =
+                given(SpecBuilder.getRequestSpecBuilder().params(params)).
+                        when().
+                        delete(path).
+                        then().
+                        extract().
+                        response();
         LogUtils.info("RESPONSE: \n" + response.prettyPrint());
         return response;
     }
@@ -251,6 +247,6 @@ public class ApiKeyword {
     @Step
     public static void verifyStatusCode(Response response, StatusCode statusCode) {
         LogUtils.info("Verify Status code: " + response.getStatusCode() + " == " + statusCode.code);
-        Assert.assertEquals(response.getStatusCode(), statusCode.code, statusCode.msg);
+        Assert.assertEquals(response.getStatusCode(), statusCode.code);
     }
 }

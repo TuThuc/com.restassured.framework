@@ -77,5 +77,7 @@ public class GetUsers extends BaseTest {
         Response response = ApiKeyword.delete(EndPoints.DELETE_URL,params);
         ApiKeyword.verifyStatusCode(response, StatusCode.CODE_200);
     }
+
+    // sửa test rebase
 }
 
